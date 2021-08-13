@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <title>Document</title>
+</head>
+<body>
+    <p>Your Gold : {{ session['gold'] }}</p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 p-3">
+                <div class="card text-center p-4">
+                    <form action="/process_money" method="POST">
+                        <input type="hidden" name="building" value="farm">
+                        <h2>Farm</h2>
+                        <h5>( Earns 10 - 20 gold )</h5>
+                        <br><br>
+                        <input type="submit" value="Find Gold" class="button button-primary">
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3 p-3">
+                <div class="card text-center p-4">
+                    <form action="/process_money" method="POST">
+                        <input type="hidden" name="building" value="cave">
+                        <h2>Cave</h2>
+                        <h5>( Earns 5 - 10 gold )</h5>
+                        <br><br>
+                        <input type="submit" value="Find Gold" class="button button-primary">
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3 p-3">
+                <div class="card text-center p-4">
+                    <form action="/process_money" method="POST">
+                        <input type="hidden" name="building" value="house">
+                        <h2>House</h2>
+                        <h5>( Earns 2 - 5 gold )</h5>
+                        <br><br>
+                        <input type="submit" value="Find Gold" class="button button-primary">
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-3 p-3">
+                <div class="card text-center p-4">
+                    <form action="/process_money" method="POST">
+                        <input type="hidden" name="building" value="casino">
+                        <h2>Casino</h2>
+                        <h5>( Earns / Takes 0 - 50 gold )</h5>
+                        <br><br>
+                        <input type="submit" value="Find Gold" class="button button-primary">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 p-3">
+                <div class="card p-4 events">
+                    <ul>
+                        {% for event in session['events'] %}
+                        {{ event|safe }}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
